@@ -107,3 +107,7 @@ IEnumerator SetTextUI()
 
 注意如果协程的代码同时调用会出现不可控的问题，所以最好让其一次只调用一次。
 
+
+
+### Text typing
+
