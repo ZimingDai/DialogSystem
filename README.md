@@ -111,3 +111,5 @@ IEnumerator SetTextUI()
 
 ### Text typing
 
+快速显示整个文档
+
