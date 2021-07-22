@@ -42,13 +42,18 @@ public class DialogSystem : MonoBehaviour
         {
             gameObject.SetActive(false);
             index = 0;
+            return;
         }
-
-        if (Input.GetKeyDown(KeyCode.R) && textFinished)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            //textLabel.text = textList[index];
-            //index++;
-            StartCoroutine(SetTextUI());
+            if (textFinished && !isJump)
+            {
+                StartCoroutine(SetTextUI());
+            }
+            else if(!textFinished && !isJump)
+            {
+                isJump = !isJump;
+            }
         }
     }
 
@@ -65,7 +70,6 @@ public class DialogSystem : MonoBehaviour
 
     IEnumerator SetTextUI()
     {
-        isJump = false;
         textFinished = false;
         textLabel.text = "";
 
@@ -80,17 +84,15 @@ public class DialogSystem : MonoBehaviour
                 index++;
                 break;    
         }
-        
-        for (int i = 0; i < textList[index].Length; i++) //一个字符一个字符加上去
+        int letter = 0;
+        while (!isJump && letter < textList[index].Length - 1)
         {
-            textLabel.text += textList[index][i];
-            if (Input.GetKeyDown(KeyCode.Space)) isJump = true;
-            if (!isJump)
-            {
-                yield return new WaitForSeconds(textSpeed); //等待时间
-            }
+            textLabel.text += textList[index][letter];
+            letter++;
+            yield return new WaitForSeconds(textSpeed);
         }
-
+        textLabel.text = textList[index];
+        isJump = false;
         textFinished = true;
         index++;
     }

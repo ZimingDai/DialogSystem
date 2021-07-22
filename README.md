@@ -109,7 +109,63 @@ IEnumerator SetTextUI()
 
 
 
-### Text typing
 
-快速显示整个文档
+
+#### 快速显示整个文档
+
+```c#
+void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
+        {
+            gameObject.SetActive(false);
+            index = 0;
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (textFinished && !isJump)
+              //如果截止了，并且不用跳过
+            {
+                StartCoroutine(SetTextUI());
+            }
+            else if(!textFinished && !isJump)
+              //如果截止了还要跳过
+            {
+                isJump = !isJump;
+            }
+        }
+    }
+```
+
+```c#
+IEnumerator SetTextUI()
+    {
+        textFinished = false;
+        textLabel.text = "";
+
+        switch (textList[index])
+        {
+            case "A":
+                faceImage.sprite = face01;
+                index++;
+                break;
+            case "B":
+                faceImage.sprite = face02;
+                index++;
+                break;    
+        }
+        int letter = 0;
+        while (!isJump && letter < textList[index].Length - 1)
+        {
+            textLabel.text += textList[index][letter];
+            letter++;
+            yield return new WaitForSeconds(textSpeed);
+        }
+        textLabel.text = textList[index];//直接显示全部文字，跳过循环
+        isJump = false;
+        textFinished = true;
+        index++;
+    }
+```
 
