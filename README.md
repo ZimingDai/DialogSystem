@@ -10,7 +10,7 @@
 
 * UGUI
 * TextAsset
-* **Startcoroutine 携程处理**
+* **Startcoroutine 协程处理**
 
 
 
@@ -82,4 +82,28 @@ void GetTextFromFile(TextAsset file)
 
 
 #### startCoroutine
+
+```c
+IEnumerator SetTextUI()
+    {
+        textLabel.text = "";
+        for (int i = 0; i < textList[index].Length; i++)//一个字符一个字符加上去
+        {
+            textLabel.text += textList[index][i];
+
+            yield return new WaitForSeconds(textSpeed);//等待时间
+            
+        }
+
+        index++;
+    }
+```
+
+> yeild return 之后的代码都会等等待时间之后才会执行。
+
+调用：
+
+`StartCoroutine(SetTextUI());`
+
+注意如果协程的代码同时调用会出现不可控的问题，所以最好让其一次只调用一次。
 

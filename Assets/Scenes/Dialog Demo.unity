@@ -6945,7 +6945,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e5123441c46c84bf2822ea7ecf091f9b, type: 3}
-    m_FontSize: 17
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -8759,6 +8759,9 @@ MonoBehaviour:
   faceImage: {fileID: 90819425}
   textFile: {fileID: 4900000, guid: 4585e3bb1faca407bb2779618ff3836a, type: 3}
   index: 0
+  textSpeed: 0.1
+  face01: {fileID: 21300490, guid: 24013d207cd1b4db0ba357640390fad1, type: 3}
+  face02: {fileID: 21300300, guid: 24013d207cd1b4db0ba357640390fad1, type: 3}
 --- !u!1 &2034203621
 GameObject:
   m_ObjectHideFlags: 0
